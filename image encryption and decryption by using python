@@ -1,0 +1,49 @@
+
+
+def encrypt_image(image_path, key):
+    img = Image.open(image_path)
+    pixels = img.load()
+
+    # Get image dimensions
+    width, height = img.size
+
+    # Encrypt pixels
+    for x in range(width):
+        for y in range(height):
+            pixel = pixels[x, y]
+            # XOR pixel values with key
+            pixels[x, y] = (pixel[0] ^ key, pixel[1] ^ key, pixel[2] ^ key)
+
+    img.save("encrypted_image.png")
+
+# Example usage
+image_path = "original_image.png"
+key = 123  # Change this to your desired encryption key
+encrypt_image(image_path, key)
+
+
+Image Decryption
+
+from PIL import Image
+
+def decrypt_image(image_path, key):
+    img = Image.open(image_path)
+    pixels = img.load()
+
+    # Get image dimensions
+    width, height = img.size
+
+    # Decrypt pixels
+    for x in range(width):
+        for y in range(height):
+            pixel = pixels[x, y]
+            # XOR pixel values with key
+            pixels[x, y] = (pixel[0] ^ key, pixel[1] ^ key, pixel[2] ^ key)
+
+    img.save("decrypted_image.png")
+
+# Example usage
+image_path = "encrypted_image.png"
+key = 123  # Same key used for encryption
+decrypt_image(image_path, key)
+
